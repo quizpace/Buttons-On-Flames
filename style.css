@@ -4,10 +4,14 @@
   box-sizing: border-box;
 }
 
+
 body {
-  background: black;
-  overflow: hidden;
-}
+    background: url('https://i.pinimg.com/originals/d3/83/1c/d3831c7f0d93431f8aabad0f115f31e1.gif') no-repeat center center fixed;
+    background-size: cover;
+    overflow: hidden;
+  }
+  
+
 
 .buttons {
   position: absolute;
@@ -18,25 +22,26 @@ body {
 }
 
 #canvas1 {
-  background: rgb(0, 0, 0);
-  filter: blur(10px) contrast(5);
+  /* background: rgb(0, 0, 0); */
+  /* filter: blur(30px) contrast(5); */
 }
 
 .button {
   position: relative;
-  width: 25%;
+  width: 15%;
   height: 120px;
   margin: 10px;
   display: inline-block;
-  border-radius: 50px;
-  border: 5px solid rgb(156, 223, 240);
+  border-radius: 20px;
+  border: 2px solid rgb(103, 6, 96);
   background: transparent;
-  transition: 0.5s;
+  transition: 0.2s;
   font-size: 50px;
   font-weight: 900;
-  color: rgb(244, 180, 119);
+  color: rgb(194, 119, 244);
   line-height: 110px;
   min-width: 300px;
+  background: black;
 }
 .button::before {
   content: "";
@@ -46,34 +51,23 @@ body {
   top: 0;
   left: 0;
   border-radius: 50px;
-  transition: 0.5s;
+  transition: 0.4s;
+  -webkit-text-stroke: 1px rgb(0, 0, 0);
 }
 
 button:nth-child(1)::before {
-  content: "HOME";
+  content: "EASY";
 }
 
 button:nth-child(2)::before {
-  content: "SHOP";
+  content: "MEDUIM";
 }
 
 button:nth-child(3)::before {
-  content: "ABOUT";
+  content: "HARD";
 }
 
 .button:hover::before {
-  color: yellow;
-  box-shadow: inset 10px 10px 15px orange, inset -10px -10px 15px orange,
-    inset 10px -10px 15px orange;
-  background: yellow;
-  text-shadow: 5px 5px 5px orange, -5px -5px 5px orange, -5px 5px 5px orange,
-    5px -5px 5px orange;
+  color: rgb(183, 255, 0);
 }
 
-.button:hover {
-  color: rgb(136, 255, 0);
-  box-shadow: 10px 10px 15px orange, -10px -10px 15px orange,
-    10px -10px 15px orange;
-  border: 5px solid orange;
-  background: orange;
-}

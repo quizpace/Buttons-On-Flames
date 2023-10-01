@@ -22,24 +22,23 @@ class Particle {
     this.x = x;
     this.y = y;
     this.size = size;
-    this.weight = Math.random() * 0.5 + 4.5;
-    this.directionX = Math.random() * 5;
+    this.weight = Math.random() * 10.5 + 3.5;
+    this.directionX = Math.random() * 15;
   }
   update() {
-    this.y += this.weight;
-
-    if (this.size >= 0.5) this.size -= 0.4;
+    this.y -= this.weight;
+    this.x += this.directionX;
+    if (this.size >= 0.3) this.size -= 0.05;
   }
   draw() {
-    ctx.fillStyle = "rgba(255, 288, 196)";
-    // ctx.fillRect(this.x, this.y, this.size, this.size);
     ctx.beginPath();
-    ctx.arc(this.x, this.y, this.size, 0.2, Math.PI * 0.2);
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = "orange";
     ctx.fill();
   }
 }
 
-let activeButton = 1;
+let activeButton = -1;
 buttonElements.forEach((button) =>
   button.addEventListener("mouseenter", function () {
     activeButton = button.dataset.number;
@@ -53,20 +52,6 @@ buttonElements.forEach((button) =>
 
 function handleParticles() {
   for (let i = 0; i < particlesArray.length; i++) {
-    for (let y = i; y < particlesArray.length; y++) {
-      let dx = particlesArray[i].x - particlesArray[y].x;
-      let dy = particlesArray[i].y - particlesArray[y].y;
-      let distance = Math.sqrt(dx * dx + dy * dy);
-      let opacity = particlesArray[i].size / 95 + particlesArray[y].size / 95;
-      ctx.strokeStyle = "rgba(198, 231, 106," + opacity;
-      if (distance < 80) {
-        ctx.beginPath();
-        ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
-        ctx.lineTo(particlesArray[y].x, particlesArray[y].y);
-        ctx.stroke();
-      }
-    }
-
     particlesArray[i].update();
     particlesArray[i].draw();
     if (particlesArray[i].size <= 1) {
