@@ -6,7 +6,6 @@
 
 body {
   background: black;
-  overflow: hidden;
 }
 
 .buttons {
@@ -18,8 +17,7 @@ body {
 }
 
 #canvas1 {
-  background: rgb(0, 0, 0);
-  filter: blur(10px) contrast(5);
+  background: blue;
 }
 
 .button {
@@ -62,18 +60,13 @@ button:nth-child(3)::before {
 }
 
 .button:hover::before {
-  color: yellow;
-  box-shadow: inset 10px 10px 15px orange, inset -10px -10px 15px orange,
-    inset 10px -10px 15px orange;
-  background: yellow;
-  text-shadow: 5px 5px 5px orange, -5px -5px 5px orange, -5px 5px 5px orange,
-    5px -5px 5px orange;
+  color: rgb(136, 255, 0);
+  box-shadow: inset 10px 10px 15px purple, inset -10px -10px 15px purple,
+    inset 10px -10px 15px purple;
 }
 
 .button:hover {
   color: rgb(136, 255, 0);
-  box-shadow: 10px 10px 15px orange, -10px -10px 15px orange,
-    10px -10px 15px orange;
-  border: 5px solid orange;
-  background: orange;
+  box-shadow: 10px 10px 15px purple, -10px -10px 15px purple,
+    10px -10px 15px purple;
 }
