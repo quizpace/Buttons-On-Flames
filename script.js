@@ -22,19 +22,19 @@ class Particle {
     this.x = x;
     this.y = y;
     this.size = size;
-    this.weight = Math.random() * 0.5 + 4.5;
-    this.directionX = Math.random() * 5;
+    this.weight = Math.random() * 1.59 + 2.5;
+    this.directionX = Math.random() * 4;
   }
   update() {
     this.y += this.weight;
 
-    if (this.size >= 0.5) this.size -= 0.4;
+    if (this.size >= 0.3) this.size -= 0.3;
   }
   draw() {
     ctx.fillStyle = "rgba(255, 288, 196)";
     // ctx.fillRect(this.x, this.y, this.size, this.size);
     ctx.beginPath();
-    ctx.arc(this.x, this.y, this.size, 0.2, Math.PI * 0.2);
+    ctx.arc(this.x, this.y, this.size, 0.1, Math.PI * 0.3);
     ctx.fill();
   }
 }
@@ -57,8 +57,21 @@ function handleParticles() {
       let dx = particlesArray[i].x - particlesArray[y].x;
       let dy = particlesArray[i].y - particlesArray[y].y;
       let distance = Math.sqrt(dx * dx + dy * dy);
-      let opacity = particlesArray[i].size / 95 + particlesArray[y].size / 95;
-      ctx.strokeStyle = "rgba(198, 231, 106," + opacity;
+      let opacity = particlesArray[i].size / 85 + particlesArray[y].size / 85;
+
+      // Create a linear gradient
+      let gradient = ctx.createLinearGradient(
+        particlesArray[i].x,
+        particlesArray[i].y,
+        particlesArray[y].x,
+        particlesArray[y].y
+      );
+      gradient.addColorStop(0, "rgba(66, 255, 0, 0)"); // Start color with full transparency
+      gradient.addColorStop(1, "rgba(159, 255, 255, " + opacity + ")"); // End color with calculated opacity
+
+      // Set the gradient as the stroke style
+      ctx.strokeStyle = gradient;
+
       if (distance < 80) {
         ctx.beginPath();
         ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
@@ -75,6 +88,31 @@ function handleParticles() {
     }
   }
 }
+
+// function handleParticles() {
+//   for (let i = 0; i < particlesArray.length; i++) {
+//     for (let y = i; y < particlesArray.length; y++) {
+//       let dx = particlesArray[i].x - particlesArray[y].x;
+//       let dy = particlesArray[i].y - particlesArray[y].y;
+//       let distance = Math.sqrt(dx * dx + dy * dy);
+//       let opacity = particlesArray[i].size / 95 + particlesArray[y].size / 95;
+//       ctx.strokeStyle = "rgba(66, 255, 0," + opacity;
+//       if (distance < 80) {
+//         ctx.beginPath();
+//         ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+//         ctx.lineTo(particlesArray[y].x, particlesArray[y].y);
+//         ctx.stroke();
+//       }
+//     }
+
+//     particlesArray[i].update();
+//     particlesArray[i].draw();
+//     if (particlesArray[i].size <= 1) {
+//       particlesArray.splice(i, 1);
+//       i--;
+//     }
+//   }
+// }
 
 function creatParticle() {
   if (activeButton > -1) {
